@@ -33,6 +33,11 @@ pipeline {
                 echo 'Test'
             }
         }
+        stage('Remote stage') {
+            steps {
+                echo 'Remote test'
+            }
+        }
     }
 
 }
