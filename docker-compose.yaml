@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  duo-task:
+    image: duo-task
+    build: .
+    ports:
+      - target: 5000
+        published: 5500
