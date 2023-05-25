@@ -4,5 +4,5 @@ services:
     image: duo-task
     build: .
     ports:
-      - target: 5000
-        published: 5500
+      - target: 5500
+        published: 5000
