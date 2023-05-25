@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git url: 'https://github.com/timchristopher/duo-task', branch: 'master'
+                echo 'Not required as git clone is handled by Jenkins directly'
+                //git url: 'https://github.com/timchristopher/duo-task', branch: 'master'
             }
         }
         stage('Pre-build Cleanup') {
