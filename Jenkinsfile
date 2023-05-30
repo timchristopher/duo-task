@@ -12,7 +12,9 @@ pipeline {
             steps {
                 echo 'Clean-up'
                 // sh 'docker system prune -f'
-                sh 'docker stop duo-task && docker rm duo-task || docker rm duo-task'
+                sh 'docker ps -q --filter "name=^duo-task\$" | grep -q . && docker stop duo-task | (echo -n "Stopped " && cat) || echo "Application \'duo-task\' is not running"'
+                sh 'docker ps -qa --filter "name=^duo-task\$" | grep -q . && docker rm duo-task | (echo -n "Removed container " && cat) || echo "Container named \'duo-task\' does not exist"'
+                sh 'docker network ls -q --filter "name=^duo-net\$" | grep -q . && docker network rm duo-net || echo "duo-net does not exist"'
             }
         }
         stage('Build and Run') {
@@ -28,11 +30,6 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Test'
-            }
-        }
-        stage('Remote stage') {
-            steps {
-                echo 'Remote test'
             }
         }
     }
